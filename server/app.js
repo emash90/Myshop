@@ -1,9 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
+
+
+
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+
+
+
+
 const bodyParser = require('body-parser');
 
 
@@ -30,3 +39,5 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/', authRoutes);
 app.use('/api/v1/product', productRoutes);
+app.use('/api/v1/cart', cartRoutes);
+app.use('/api/v1/order', orderRoutes );
