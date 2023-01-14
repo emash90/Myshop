@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
+const cors = require('cors');
 
 
 
@@ -32,6 +33,8 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
     });
 
+// Middlewares
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

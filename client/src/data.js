@@ -25,20 +25,20 @@ export const sliderItems = [
 export const categories = [
     {
         id: 1,
-        img: "https://images.pexels.com/photos/2635315/pexels-photo-2635315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        img: "https://images.pexels.com/photos/1337477/pexels-photo-1337477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         title: "SHIRT STYLE!",
         cat: "shirt",
     },
     {
         id: 2,
-        img: "https://images.pexels.com/photos/1484807/pexels-photo-1484807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        title: "LOUNGEWEAR LOVE",
+        img: "https://images.pexels.com/photos/428340/pexels-photo-428340.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        title: "T-SHIRT STYLE!",
         cat: "loungewear",
     },
     {
         id: 3,
-        img: "https://image.kilimall.com/kenya/shop/store/goods/4292/2022/09/4292_07176932572331964_720.jpg.webp",
-        title: "LIGHT JACKETS",
+        img: "https://images.pexels.com/photos/6995861/pexels-photo-6995861.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        title: "SWEATER STYLE!",
         cat: "lightjacket",
     },
 ];
@@ -46,50 +46,50 @@ export const categories = [
 export const popularProducts = [
     {
         id: 1,
-        img: "https://i.ibb.co/S6qMxwr/1.png",
+        img: "https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 2,
-        img: "https://i.ibb.co/M6hHc3F/2.png",
+        img: "https://images.pexels.com/photos/3386737/pexels-photo-3386737.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 3,
-        img: "https://i.ibb.co/XsdmR2c/3.png",
+        img: "https://images.pexels.com/photos/1510509/pexels-photo-1510509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 4,
-        img: "https://i.ibb.co/dBbG1cT/4.png",
+        img: "https://images.pexels.com/photos/3026284/pexels-photo-3026284.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
         id: 5,
-        img: "https://i.ibb.co/7CQVJNm/5.png",
+        img: "https://images.pexels.com/photos/14017236/pexels-photo-14017236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 6,
-        img: "https://i.ibb.co/4W2DGKm/6.png",
+        img: "https://images.pexels.com/photos/10822324/pexels-photo-10822324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 7,
-        img: "https://i.ibb.co/NsK2w5y/7.png",
+        img: "https://images.pexels.com/photos/4066293/pexels-photo-4066293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 8,
-        img: "https://i.ibb.co/7tGKGvb/8.png",
+        img: "https://images.pexels.com/photos/4066290/pexels-photo-4066290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 9,
-        img: "https://i.ibb.co/KV18Ysr/9.png",
+        img: "https://images.pexels.com/photos/10822324/pexels-photo-10822324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 10,
-        img: "https://i.ibb.co/7tGKGvb/8.png",
+        img: "https://images.pexels.com/photos/3283523/pexels-photo-3283523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 11,
-        img: "https://i.ibb.co/KV18Ysr/9.png",
+        img: "https://images.pexels.com/photos/10822324/pexels-photo-10822324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
         id: 12,
-        img: "https://i.ibb.co/7tGKGvb/8.png",
+        img: "https://images.pexels.com/photos/10822324/pexels-photo-10822324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
 ];
