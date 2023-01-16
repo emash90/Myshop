@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import styled from 'styled-components'
+import { useLocation } from 'react-router-dom'
+import axios from 'axios'
+import { AddCircleOutline, RemoveCircleOutline } from '@material-ui/icons'
+import { addProduct } from '../redux/cartRedux'
+import { useDispatch } from 'react-redux'
 
 const Container = styled.div`
     `
@@ -81,12 +86,15 @@ const Amount = styled.span`
     justify-content: center;
     margin: 0px 5px;
 `
-const Remove = styled.span`
+// const RemoveCircleOutline  = styled.span`
+//     cursor: pointer;
 
-`
-const Add = styled.span`
+// `
+// const AddCircleOutline  = styled.span`
+//     cursor: pointer;
 
-`
+
+// `
 const ButtonContainer = styled.div`
     display: flex;
     align-items: center;
@@ -113,6 +121,32 @@ const Button = styled.button`
 `
 
 const Product = () => {
+    const dispatch = useDispatch()
+    const location = useLocation()
+    const id = location.pathname.split("/")[3]
+    console.log(`id: ${id}`)
+    const [product, setProduct] = useState({})
+    const [quantity, setQuantity] = useState(1)
+
+    useEffect(() => {
+        const getProduct = async () => {
+            const res = await axios.get(`http://localhost:5000/api/v1/product/${id}`)
+            console.log(`one data: ${res}`)
+            setProduct(res.data)
+        }
+        console.log(`product: ${JSON.stringify(product)}`)
+        getProduct()
+    }, [id])
+    const handleQuantity = (type) => {
+        if (type === 'add') {
+            setQuantity(quantity + 1)
+        } else {
+            setQuantity(quantity > 1 ? quantity - 1 : 1)
+        }
+    }
+    const handleAddToCartClick = () => {
+        dispatch(addProduct({ ...product, quantity, id: product._id, color: product.color[0], size: product.size[0] }))
+    }
   return (
     <Container>
        <Navbar />
@@ -121,37 +155,36 @@ const Product = () => {
                 <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
             </ImgContainer>
             <InfoContainer>
-                <Title>Denim Jumpsuit</Title>
+                <Title>{product.name}</Title>
                 <Desc>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quisquam, voluptatum.
+                    {product.desc}
                 </Desc>
-                <Price>$20</Price>
+                <Price>{product.price}</Price>
                 <FilterContainer>
                     <Filter>
                         <FilterTitle>Color</FilterTitle>
-                        <FilterColor color="black" />
-                        <FilterColor color="darkblue" />
-                        <FilterColor color="gray" />
+                       {product.color > 1 ? product.color.map(c => (
+                            <FilterColor color={c} key={c} />
+                          )) : <FilterColor color={product.color} />
+                          }
                     </Filter>
                     <Filter>
                         <FilterTitle>Size</FilterTitle>
                         <FilterSize>
-                            <FilterSizeOption>XS</FilterSizeOption>
-                            <FilterSizeOption>S</FilterSizeOption>
-                            <FilterSizeOption>M</FilterSizeOption>
-                            <FilterSizeOption>L</FilterSizeOption>
-                            <FilterSizeOption>XL</FilterSizeOption>
+                            {product.size > 1 ? product.size.forEach(s => (
+                            <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                            )) : <FilterSizeOption>{product.size}</FilterSizeOption>
+                            }
                         </FilterSize>
                     </Filter>
                 </FilterContainer>
                 <AddContainer>
                     <AmountContainer>
-                        <Remove />
-                        <Amount>1</Amount>
-                        <Add />
+                        <RemoveCircleOutline style={{ cursor: 'pointer' }} onClick={() => {handleQuantity('remove')}} />
+                        <Amount>{quantity}</Amount>
+                        <AddCircleOutline style={{ cursor: 'pointer' }} onClick={() => {handleQuantity('add')}} />
                     </AmountContainer>
-                    <Button>ADD TO CART</Button>
+                    <Button onClick={handleAddToCartClick}>ADD TO CART</Button>
                 </AddContainer>
             </InfoContainer>
        </Wrapper>

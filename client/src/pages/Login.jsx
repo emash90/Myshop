@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styled from 'styled-components'
+import { loginCall } from '../redux/apiCalls'
 
 
 const Container = styled.div`
@@ -54,17 +58,29 @@ const Link = styled.a`
 
 
 const Login = () => {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const { isFetching, error } = useSelector(state => state.user)
+    
+    if (error) {
+        toast.error(error)
+    }
+    const dispatch = useDispatch()
+    const handleLogin = (e) => {
+        e.preventDefault()
+       loginCall({username, password}, dispatch)
+    }
   return (
     <Container>
         <Wrapper>
             <Title>Login</Title>
             <Form>
                 
-                <Input placeholder="username" />
-                <Input placeholder="password" />
+                <Input onChange={(e) => {setUsername(e.target.value)}} placeholder="username" />
+                <Input onChange={(e) => {setPassword(e.target.value)}} placeholder="password" />
             
                
-                <Button>Login</Button>
+                <Button onClick={handleLogin}> {isFetching ? 'loggin in' : 'login'} </Button>
                 <Link>Forgot password?</Link>
             </Form>
         </Wrapper>

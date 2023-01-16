@@ -17,12 +17,13 @@ const Products = ({ cat, filters, sort }) => {
   useEffect(() => {
     const get_products = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/v1/product")
-        //   headers: {
-        //     token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken
-        //   }
-        // })
-        console.log(res)
+        const res = await axios.get('http://localhost:5000/api/v1/product', {
+          params: {
+            category: cat,
+            ...filters,
+            sort
+          }
+        })
         setProducts(res.data)
       } catch (error) {
         console.log(error)
@@ -30,11 +31,11 @@ const Products = ({ cat, filters, sort }) => {
       }
     }
     get_products()
-  }, [])
+  }, [sort, cat, filters])
 
   return (
     <Container>
-        {popularProducts.map(item => (
+        {products.map(item => (
             <Product item={item} key={item.id} />
         ))}
       

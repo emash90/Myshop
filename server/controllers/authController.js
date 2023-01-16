@@ -36,11 +36,11 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
-    if (!(email) || !(password)) {
+    const { username, password } = req.body;
+    if (!(username) || !(password)) {
         res.status(400).json("ensure all fields and filled")
     }
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: username });
     if (user) {
         const hashed_password = cryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
         const string_password = hashed_password.toString(cryptoJS.enc.Utf8)
@@ -63,7 +63,7 @@ const loginUser = async (req, res) => {
                 token,
             });
         } else {
-            res.status(400).json("invalid password")
+            res.status(400).json("invalid credentials")
         }
     } else {
         res.status(400).json("user does not exist")

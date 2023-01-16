@@ -45,7 +45,8 @@ export const categories = [
 
 export const popularProducts = [
     {
-        id: 1,
+        _id: 1,
+        cat: "shirt",
         img: "https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {

@@ -17,14 +17,12 @@ const productSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    color: {
-        type: String,
-        trim: true,
-    },
-    size: {
-        type: String,
-        trim: true,
-    },
+    color: [
+        { type: String, required: true }
+    ],
+    size: [
+        { type: String, required: true }
+    ],
     image: {
         type: String,
         required: true,
@@ -34,6 +32,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
+        
     },
     countInStock: {
         type: Number,

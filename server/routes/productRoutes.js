@@ -9,7 +9,7 @@ router.get('/', getAllProducts);
 
 //get product by id
 
-router.post('/:productsId', getProductById);
+router.get('/:productsId', getProductById);
 
 //create product
 
@@ -17,7 +17,7 @@ router.post('/create', createProduct);
 
 //update product
 
-router.put('/:productsId',  updateProduct);
+router.patch('/:productsId',  updateProduct);
 
 
 

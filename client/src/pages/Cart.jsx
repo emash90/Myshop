@@ -1,4 +1,5 @@
-import { AddAPhoto, AddCircleOutlineOutlined, RemoveCircle, RemoveCircleOutlineRounded } from "@material-ui/icons"
+import { AddAPhoto, AddCircleOutline, AddCircleOutlineOutlined, RemoveCircle, RemoveCircleOutline, RemoveCircleOutlineRounded } from "@material-ui/icons"
+import { useSelector } from "react-redux"
 import styled from "styled-components"
 
 
@@ -157,6 +158,9 @@ const Button = styled.button`
 
 
 const Cart = () => {
+  const cart = useSelector(state => state.cart)
+  const shippingFee = cart.products.length * 100
+  console.log(cart)
   return (
     <Container>
       <Wrapper>
@@ -169,61 +173,48 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
+            {cart.products ? cart.products.map(item => (
+              <Product>
+                <ProductDetail>
+                  <Image src={item.img} />
+                  <Details>
+                    <ProductName><b>Product:</b> {item.title}</ProductName>
+                    <ProductId><b>ID:</b> {item.id}</ProductId>
+                    <ProductColor color={item.color} />
+                    <ProductSize><b>Size:</b> {item.size}</ProductSize>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>Quantity
+                  <ProductAmountContainer>
+                    <RemoveCircleOutline />
+                    <Amount>{item.quantity}</Amount>
+                    <AddCircleOutline />
+                  </ProductAmountContainer>
+                  <ProductPrice>Kes. {item.price * item.quantity}</ProductPrice>
+                </PriceDetail>
+                <Hr />
+              </Product>
+            )) : 
             <Product>
-              <ProductDetail>
-                <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
-                <Details>
-                  <ProductName><b>Product:</b> Jumpsuit</ProductName>
-                  <ProductId><b>ID:</b> 93813718293</ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize><b>Size:</b> M</ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>Price
-                <ProductAmountContainer>
-                  <RemoveCircleOutlineRounded />
-                  <Amount>1</Amount>
-                  <AddCircleOutlineOutlined />
-                </ProductAmountContainer>
-                <ProductPrice>Rs. 100</ProductPrice>
-              </PriceDetail>
-
-            </Product>
+              nothing in cart
+              </Product>
+                }
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src='https://i.ibb.co/DG69bQ4/2.png' />
-                <Details>
-                  <ProductName><b>Product:</b> Jumpsuit</ProductName>
-                  <ProductId><b>ID:</b> 93813718293</ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize><b>Size:</b> M</ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>Price
-                <ProductAmountContainer>
-                  <RemoveCircleOutlineRounded />
-                  <Amount>1</Amount>
-                  <AddCircleOutlineOutlined />
-                </ProductAmountContainer>
-                <ProductPrice>Rs. 100</ProductPrice>
-              </PriceDetail>
-
-            </Product>
+          
           </Info>
           <Summary>
             <SummaryTitle>Order Summary</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>Rs. 100</SummaryItemPrice>
+              <SummaryItemPrice>Ksh {cart.cartTotalPrice}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>Rs. 100</SummaryItemPrice>
+              <SummaryItemPrice>Ksh {shippingFee}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>Rs. 100</SummaryItemPrice>
+              <SummaryItemPrice>Ksh {cart.cartTotalPrice + shippingFee }</SummaryItemPrice>
             </SummaryItem>
             <Button>Checkout</Button>
           </Summary>
